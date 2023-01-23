@@ -70,7 +70,7 @@ def generate_keywords(user_input: str):
     keywords_array = re.split(",|-|\n", keywords)
 
     # Remove empty '' in the end
-    keywords_array = [keyword.lower() for keyword in keywords_array if keyword]
+    keywords_array = [keyword.lower().strip() for keyword in keywords_array if keyword]
 
     print(f"Branding Snippet : {keywords_array}")
     return keywords_array 
