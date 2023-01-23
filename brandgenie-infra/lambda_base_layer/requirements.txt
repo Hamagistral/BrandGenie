@@ -1,0 +1,4 @@
+fastapi
+magnum
+openai
+requests
