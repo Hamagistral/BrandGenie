@@ -1,1 +1,4 @@
-./app/.env
+.env
+*.zip
+*.pyc
+__pycache__

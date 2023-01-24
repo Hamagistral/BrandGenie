@@ -100,20 +100,11 @@ def generate_image(user_input: str):
     prompt = f"Generate a high quality art work of {user_input}, digital art:"
     print(prompt)
 
-    try:
-        response = openai.Image.create(
-            prompt=prompt,
-            n=1,
-            size="512x512"
-        )
+    response = openai.Image.create(prompt=prompt, n=1, size="512x512")
 
-        image_url = response['data'][0]['url']
-        print(image_url)
-
-    except openai.error.OpenAIError as e:
-        print(e.http_status)
-        print(e.error)
-
+    image_url = response['data'][0]['url']
+    
+    print(image_url)
     return image_url
 
 if __name__ == "__main__":
