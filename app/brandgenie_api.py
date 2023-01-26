@@ -1,11 +1,20 @@
 from brandgenie import generate_brand_name, generate_brand_slogan, generate_keywords, generate_image
 from fastapi import FastAPI, Query
 from mangum import Mangum
+from fastapi.middleware.cors import CORSMiddleware
 
 MAX_INPUT_LENGTH = 12
 
 app = FastAPI()
 handler = Mangum(app)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/generate_brandname")
 async def generate_brandname(input: str = Query(max_length=MAX_INPUT_LENGTH)):
