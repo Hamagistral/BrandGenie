@@ -36,33 +36,29 @@ def generate_brand_name(user_input: str) -> str:
     prompt = f"Generate unique, original and creative brand name for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0, max_tokens=24)
+    response = openai.Completion.create(model="text-davinci-001", prompt=prompt, temperature=0.2, max_tokens=24)
     brand_name = response["choices"][0]["text"].strip()
 
     # Check if the first response is empty string
-    if brand_name == "":
-        # Call the API again
-        response = openai.Completion.create(model="text-davinci-001", prompt=prompt, temperature=0, max_tokens=24)
-        brand_name = response["choices"][0]["text"].strip()
+    if brand_name != "":
+        # In case there's multiple choices, take the first one
+        if '.' in brand_name:
+            # Split the string by newline characters and access the first element
+            first_brand_name = brand_name.split('\n')[0]
+            # Extracting the first word from the string 
+            result = first_brand_name.split('.')[1]
+            # Removing leading whitespace
+            result = result.strip()
+        else:
+            result = brand_name
 
-        # Check if the second response is still empty string
-        if brand_name == "":
-            return "Couldn't generate a brand name. Please try another prompt."
-
-    # In case there's multiple choices, take the first one
-    if '.' in brand_name:
-        # Split the string by newline characters and access the first element
-        first_brand_name = brand_name.split('\n')[0]
-        # Extracting the first word from the string 
-        result = first_brand_name.split('.')[1]
-        # Removing leading whitespace
-        result = result.strip()
-    else:
-        result = brand_name
-
-    print(f"Brand Name : {result}")
-    return result
+        print(f"Brand Name : {result}")
+        return result
     
+    else:
+        return "Couldn't generate a brand name. Please try another prompt."
+
+
 
 def generate_brand_slogan(user_input: str) -> str:
 
