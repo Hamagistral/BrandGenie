@@ -7,7 +7,7 @@ import re
 from dotenv import load_dotenv
 load_dotenv()
 
-MAX_INPUT_LENGTH = 12
+MAX_INPUT_LENGTH = 32
 
 def main():
     parser = argparse.ArgumentParser()
@@ -19,6 +19,7 @@ def main():
 
         generate_brand_name(user_input)
         generate_brand_slogan(user_input)
+        generate_adcopy(user_input)
         generate_keywords(user_input)
         generate_image(user_input)
         
@@ -36,7 +37,7 @@ def generate_brand_name(user_input: str) -> str:
     prompt = f"Generate unique, original and creative brand name for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-001", prompt=prompt, temperature=0, max_tokens=32)
+    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0, max_tokens=24)
     brand_name = response["choices"][0]["text"].strip()
 
     # In case there's multiple choices, take the first one
@@ -62,7 +63,7 @@ def generate_brand_slogan(user_input: str) -> str:
     prompt = f"Generate unique, original, creative and short brand slogan for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-002", prompt=prompt, temperature=0, max_tokens=32)
+    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0, max_tokens=32)
     brand_slogan = response["choices"][0]["text"].strip()
 
     print(f"Branding Slogan : {brand_slogan}")
@@ -77,7 +78,7 @@ def generate_keywords(user_input: str):
     prompt = f"Generate related keywords for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-001", prompt=prompt, temperature=0, max_tokens=16)
+    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0.1, max_tokens=32)
     
     # strip() to remove "\n\n"
     keywords = response["choices"][0]["text"].strip()
@@ -88,8 +89,31 @@ def generate_keywords(user_input: str):
     # Remove empty '' in the end
     keywords_array = [keyword.lower().strip() for keyword in keywords_array if keyword]
 
-    print(f"Branding Snippet : {keywords_array}")
+    print(f"Branding Keywords : {keywords_array}")
     return keywords_array 
+
+def generate_adcopy(user_input: str):
+
+    # Load your API key from an environment variable or secret management service
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+
+    prompt = f"Write a creative ad for the following product to run on Facebook {user_input}: "
+    print(prompt)
+
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=f"Write a creative ad for the following product to run on Facebook:\n\nProduct: {user_input}",
+        temperature=0.5,
+        max_tokens=72,
+        top_p=1.0,
+        frequency_penalty=0.0,
+        presence_penalty=0.0
+    )
+
+    brand_adcopy = response["choices"][0]["text"].strip('\n')
+    
+    print(brand_adcopy)
+    return brand_adcopy
 
 
 def generate_image(user_input: str):
@@ -97,10 +121,10 @@ def generate_image(user_input: str):
     # Load your API key from an environment variable or secret management service
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
-    prompt = f"Generate a high quality art work of {user_input}, digital art:"
+    prompt = f"{user_input}, logo, digital art, drawing, in a dark circle as the background:"
     print(prompt)
 
-    response = openai.Image.create(prompt=prompt, n=1, size="512x512")
+    response = openai.Image.create(prompt=prompt, n=1, size="256x256")
 
     image_url = response['data'][0]['url']
     
