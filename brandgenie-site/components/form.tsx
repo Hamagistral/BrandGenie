@@ -36,7 +36,7 @@ const Form: React.FC<FormProps> = (props) => {
   return (
     <>
       <div>
-        <p className="mt-6 text-md leading-6 text-gray-200">Get a complete brand package for your e-commerce site with just a product description. Includes name, slogan, ad copy, keywords, and logo sketch.</p>
+        <p className="mt-6 text-md leading-6 text-gray-200">Get a complete brand package for your e-commerce site with just a product description. Includes name, slogan, ad copy, and related keywords.</p>
         <input 
           type="text"
           placeholder="Watches"
