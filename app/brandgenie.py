@@ -21,7 +21,6 @@ def main():
         generate_brand_slogan(user_input)
         generate_adcopy(user_input)
         generate_keywords(user_input)
-        generate_image(user_input)
         
     else:
         raise ValueError(f"Input length is too long. Must be under {MAX_INPUT_LENGTH}.")
@@ -63,7 +62,7 @@ def generate_brand_slogan(user_input: str) -> str:
     prompt = f"Generate unique, original, creative and short brand slogan for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0, max_tokens=32)
+    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0.2, max_tokens=32)
     brand_slogan = response["choices"][0]["text"].strip()
 
     print(f"Branding Slogan : {brand_slogan}")
@@ -83,14 +82,15 @@ def generate_keywords(user_input: str):
     # strip() to remove "\n\n"
     keywords = response["choices"][0]["text"].strip()
     
-    # split the string and covert it to list
+    # Split the string and covert it to list
     keywords_array = re.split(",|-|\n", keywords)
 
     # Remove empty '' in the end
-    keywords_array = [keyword.lower().strip() for keyword in keywords_array if keyword]
+    keywords_array = [keyword.lower().strip().split(".")[-1].strip() for keyword in keywords_array if keyword]
 
     print(f"Branding Keywords : {keywords_array}")
     return keywords_array 
+
 
 def generate_adcopy(user_input: str):
 
@@ -110,26 +110,10 @@ def generate_adcopy(user_input: str):
         presence_penalty=0.0
     )
 
-    brand_adcopy = response["choices"][0]["text"].strip('\n')
+    brand_adcopy = response["choices"][0]["text"].strip('\n').split(".")[0] + "."
     
     print(brand_adcopy)
     return brand_adcopy
-
-
-def generate_image(user_input: str):
-
-    # Load your API key from an environment variable or secret management service
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-
-    prompt = f"{user_input}, logo, digital art, drawing, in a dark circle as the background:"
-    print(prompt)
-
-    response = openai.Image.create(prompt=prompt, n=1, size="256x256")
-
-    image_url = response['data'][0]['url']
-    
-    print(image_url)
-    return image_url
 
 if __name__ == "__main__":
     main()

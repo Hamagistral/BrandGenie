@@ -1,12 +1,9 @@
-import Image from 'next/image';
-
 interface ResultsProps {
     input: string;
     brandname: string;
     brandslogan: string;
     brandadcopy: string;
     brandkeywords: string[];
-    brandimage_url: string;
     onBack: any;
 }
 
@@ -42,17 +39,6 @@ const Results: React.FC<ResultsProps> = (props) => {
                 <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
                     <div className="text-slate-400 mb-2"><strong>Brand Ad Copy </strong></div>
                     <div className="text-white text-justify">{props.brandadcopy}</div>
-                </div>
-                <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
-                    <div className="flex justify-center">
-                        <Image
-                            src={props.brandimage_url}
-                            alt="Brand Image"
-                            width={256}
-                            height={256}
-                            className="rounded"
-                        />
-                    </div>
                 </div>
             </div>
             

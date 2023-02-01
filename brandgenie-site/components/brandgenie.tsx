@@ -5,8 +5,7 @@ import Results from "./results";
 import logo from "../public/brandgenie_logo.svg";
 
 const BrandGenie: React.FC = () => {
-  const ENDPOINT: string =
-    "https://0cw7w0teuk.execute-api.us-east-1.amazonaws.com/prod/generate_branding";
+  const ENDPOINT: string = "https://0cw7w0teuk.execute-api.us-east-1.amazonaws.com/prod/generate_branding";
 
   const CHARACTER_LIMIT: number = 32;
 
@@ -16,7 +15,6 @@ const BrandGenie: React.FC = () => {
   const [brandslogan, setBrandslogan] = React.useState("");
   const [brandadcopy, setBrandAdCopy] = React.useState("");
   const [brandkeywords, setBrandkeywords] = React.useState([]);
-  const [brandimage_url, setBrandimage_url] = React.useState("");
   const [hasResult, setHasResult] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -33,7 +31,6 @@ const BrandGenie: React.FC = () => {
     setBrandslogan(data.brand_slogan);
     setBrandAdCopy(data.brand_adcopy);
     setBrandkeywords(data.keywords);
-    setBrandimage_url(data.brand_image);
     setHasResult(true);
     setIsLoading(false);
   };
@@ -54,7 +51,6 @@ const BrandGenie: React.FC = () => {
         brandslogan={brandslogan}
         brandadcopy={brandadcopy}
         brandkeywords={brandkeywords}
-        brandimage_url={brandimage_url}
         onBack={onReset}
       />
     );
