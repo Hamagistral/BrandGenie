@@ -44,7 +44,7 @@ const Results: React.FC<ResultsProps> = (props) => {
             
             
         </div>
-        <button onClick={props.onBack} className="mt-8 bg-gradient-to-r from-sky-400 to-sky-800 text-white text-lg p-2 w-full rounded-md disabled:opacity-50 disabled:bg-gray-500">Back</button>
+        <button onClick={props.onBack} className="mt-8 bg-gradient-to-r from-sky-500 to-sky-800 text-white text-lg p-2 w-full rounded-md disabled:opacity-50 disabled:bg-gray-500">Back</button>
     </>
   );
 };

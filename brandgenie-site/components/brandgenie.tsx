@@ -19,7 +19,7 @@ const BrandGenie: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
 
   const onSubmit = () => {
-    console.log("Submitting : " + input);
+
     setIsLoading(true);
     fetch(`${ENDPOINT}?input=${input}`)
       .then((res) => res.json())

@@ -39,6 +39,16 @@ def generate_brand_name(user_input: str) -> str:
     response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0, max_tokens=24)
     brand_name = response["choices"][0]["text"].strip()
 
+    # Check if the first response is empty string
+    if brand_name == "":
+        # Call the API again
+        response = openai.Completion.create(model="text-davinci-001", prompt=prompt, temperature=0, max_tokens=24)
+        brand_name = response["choices"][0]["text"].strip()
+
+        # Check if the second response is still empty string
+        if brand_name == "":
+            return "Couldn't generate a brand name. Please try another prompt."
+
     # In case there's multiple choices, take the first one
     if '.' in brand_name:
         # Split the string by newline characters and access the first element
