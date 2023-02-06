@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import 'firebase/firestore';
 
 const firebaseConfig = {
@@ -14,12 +13,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-
-if (firebaseConfig?.projectId) {
-  if (app.name && typeof window !== 'undefined') {
-    const analytics = getAnalytics(app);
-  }
-}
 
 export const initFirebase = () => {
     return app;
