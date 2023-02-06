@@ -1,3 +1,8 @@
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useRouter } from 'next/router';
+import Authentication from "./authentication";
+
 interface ResultsProps {
     input: string;
     brandname: string;
@@ -5,6 +10,8 @@ interface ResultsProps {
     brandadcopy: string;
     brandkeywords: string[];
     onBack: any;
+    auth: any;
+    user: any;
 }
 
 const Results: React.FC<ResultsProps> = (props) => {
@@ -16,37 +23,38 @@ const Results: React.FC<ResultsProps> = (props) => {
         keywordElements.push(keyword)
     }
 
-  return (
-    <>
-        <div className="mt-6 text-left">  
-            <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
-                <div className="text-slate-400 mb-2"><strong>Prompt </strong></div>
-                <div className="text-white font-bold">{props.input}</div>
-            </div>
-            <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
-                <div className="text-slate-400 mb-2"><strong>Brand Name </strong></div>
-                <div className="text-white">{props.brandname}</div>
-            </div>
-            <div>
+    return (
+        <>
+            <div className="mt-6 text-left">  
                 <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
-                    <div className="text-slate-400 mb-2"><strong>Brand Slogan </strong></div>
-                    <div className="text-white">{props.brandslogan}</div>
+                    <div className="text-slate-400 mb-2"><strong>Prompt </strong></div>
+                    <div className="text-white font-bold">{props.input}</div>
                 </div>
                 <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
-                    <div className="text-slate-400 mb-2"><strong>Brand Keywords </strong></div>
-                    <div className="flex flex-wrap">{keywordElements}</div>
+                    <div className="text-slate-400 mb-2"><strong>Brand Name </strong></div>
+                    <div className="text-white">{props.brandname}</div>
                 </div>
-                <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
-                    <div className="text-slate-400 mb-2"><strong>Brand Ad Copy </strong></div>
-                    <div className="text-white text-justify">{props.brandadcopy}</div>
-                </div>
+                <div>
+                    <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
+                        <div className="text-slate-400 mb-2"><strong>Brand Slogan </strong></div>
+                        <div className="text-white">{props.brandslogan}</div>
+                    </div>
+                    <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
+                        <div className="text-slate-400 mb-2"><strong>Brand Keywords </strong></div>
+                        <div className="flex flex-wrap">{keywordElements}</div>
+                    </div>
+                    <div className="bg-slate-800 rounded-md p-4 text-md mb-4">
+                        <div className="text-slate-400 mb-2"><strong>Brand Ad Copy </strong></div>
+                        <div className="text-white text-justify">{props.brandadcopy}</div>
+                    </div>
+                </div>        
             </div>
-            
-            
-        </div>
-        <button onClick={props.onBack} className="mt-8 bg-gradient-to-r from-sky-500 to-sky-800 text-white text-lg p-2 w-full rounded-md disabled:opacity-50 disabled:bg-gray-500">Back</button>
-    </>
-  );
+
+            <button onClick={props.onBack} className="mt-8 font-semibold bg-gradient-to-r from-sky-500 to-sky-800 text-white text-lg p-2 w-full rounded-md disabled:opacity-50 disabled:bg-gray-500">Back</button>
+            <button onClick={() => props.auth.signOut()} className="mt-4 font-semibold bg-gradient-to-r from-blue-800 to-slate-800 text-gray-50 text-md p-2 w-full rounded-md">Log Out</button>
+            <div className="mt-4 text-sky-100 text-sm">Signed in as :  <span className="font-bold text-sky-300">{props.user.displayName}</span></div>
+        </>
+    );
 };
 
 export default Results;

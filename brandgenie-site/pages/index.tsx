@@ -1,11 +1,8 @@
 import Head from 'next/head';
-import { Inter } from '@next/font/google';
-import styles from '@/styles/Home.module.css';
 import BrandGenie from '@/components/brandgenie';
 
-const inter = Inter({ subsets: ['latin'] })
-
 export default function Home() {
+  
   return (
     <>
       <Head>
@@ -15,8 +12,7 @@ export default function Home() {
         <link rel="icon" href="/brandgenieicon.ico" />
       </Head>
 
-      <BrandGenie/>
-
+      <BrandGenie />
     </>
   )
 }
