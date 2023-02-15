@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Form from "./form";
 import Results from "./results";
@@ -8,6 +8,7 @@ import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const BrandGenie: React.FC = () => {
+
   const ENDPOINT: string = "https://0cw7w0teuk.execute-api.us-east-1.amazonaws.com/prod/generate_branding";
 
   const CHARACTER_LIMIT: number = 32;
@@ -23,12 +24,12 @@ const BrandGenie: React.FC = () => {
   const [brandkeywords, setBrandkeywords] = React.useState([]);
   const [hasResult, setHasResult] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-
+  
   const onSubmit = async () => {
-    setIsLoading(true);   
-    fetch(`${ENDPOINT}?input=${input}`)
-      .then((res) => res.json())
-      .then(onResult);
+      setIsLoading(true);   
+      fetch(`${ENDPOINT}?input=${input}`)
+        .then((res) => res.json())
+        .then(onResult);
   };
 
   const onResult = (data: any) => {
@@ -73,17 +74,19 @@ const BrandGenie: React.FC = () => {
       );
       
     } else {
-        displayedElement = (
-          <Form
-            input={input}
-            isLoading={isLoading}
-            characterLimit={CHARACTER_LIMIT}
-            setInput={setInput}
-            onSubmit={onSubmit}
-            auth={auth}
-            user={user}
-          />
-        );
+
+          displayedElement = (
+            <Form
+              input={input}
+              isLoading={isLoading}
+              characterLimit={CHARACTER_LIMIT}
+              setInput={setInput}
+              onSubmit={onSubmit}
+              auth={auth}
+              user={user}
+            />
+          );
+
     }
 
   } else {
@@ -113,7 +116,7 @@ const BrandGenie: React.FC = () => {
                 />
               </div>
               <h2 className="text-3xl w-fit mx-auto my-2 font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-800 sm:text-4xl">BrandGenie</h2>
-              <h3 className="text-md font-medium text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-800 mt-3">Unleash the potential of your brand with AI</h3>
+              <h3 className="text-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-sky-800 mt-3">Unleash the potential of your brand with AI</h3>
               {displayedElement}
             </div>
           </div>

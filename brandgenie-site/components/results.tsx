@@ -1,8 +1,3 @@
-import { getAuth } from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useRouter } from 'next/router';
-import Authentication from "./authentication";
-
 interface ResultsProps {
     input: string;
     brandname: string;
@@ -51,8 +46,8 @@ const Results: React.FC<ResultsProps> = (props) => {
             </div>
 
             <button onClick={props.onBack} className="mt-8 font-semibold bg-gradient-to-r from-sky-500 to-sky-800 text-white text-lg p-2 w-full rounded-md disabled:opacity-50 disabled:bg-gray-500">Back</button>
-            <button onClick={() => props.auth.signOut()} className="mt-4 font-semibold bg-gradient-to-r from-blue-800 to-slate-800 text-gray-50 text-md p-2 w-full rounded-md">Log Out</button>
-            <div className="mt-4 text-sky-100 text-sm">Signed in as :  <span className="font-bold text-sky-300">{props.user.displayName}</span></div>
+            <button onClick={() => props.auth.signOut()} className="mt-4 font-semibold bg-slate-900/25 text-gray-50 border-2 border-slate-400 text-md p-2 w-full rounded-md">Log Out</button>
+            <div className="mt-4 text-sky-100 text-sm">Signed in as :  <span className="font-bold text-sky-400">{props.user.displayName}</span></div>
         </>
     );
 };
