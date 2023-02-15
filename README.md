@@ -22,7 +22,7 @@
 ![image](https://user-images.githubusercontent.com/66017329/218896782-c42e2537-7b48-4775-984d-48b9bc0e8001.png)
 ![image](https://user-images.githubusercontent.com/66017329/218898758-e1d1d655-f5bb-405c-9499-8d775e2e555c.png)
 
-This project is a SaaS Web Application that generates AI branding name, slogan, keywords and an adcopy e-commerce business owners who need ideas for their upcoming business. It is a full stack application powered by OpenAI API.
+This project is a SaaS Web Application that generates AI branding names, slogans, keywords, and ad copy for e-commerce business owners who need ideas for their upcoming business. It is a full-stack application powered by OpenAI API.
 
 <hr>
 
@@ -30,7 +30,7 @@ This project is a SaaS Web Application that generates AI branding name, slogan, 
 
 #### Backend Stack
 
-For the backend, I opted for Python as a language and FastAPI as a framework. A python file that contains the functions that communicates with the OPENAI API and generates the branding, and another file for the FastAPI that imports the functions and give them routes to be used when we call the API. Firebase is used for the Authentication of users (in the future it will be used to add paid plans and paypal checkout). The FastAPI file is hosted on a AWS Lambda function which is linked to the AWS API Gateway.
+For the backend, I opted for Python as a language and FastAPI as a framework. A python file that contains the functions that communicate with the OPENAI API and generates the branding, and another file for the FastAPI that imports the functions and gives them routes to be used when we call the API. Firebase is used to authenticate users (in the future it will be used to add paid plans and Paypal checkout). The FastAPI file is hosted on an AWS Lambda function linked to the AWS API Gateway.
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
@@ -40,7 +40,7 @@ For the backend, I opted for Python as a language and FastAPI as a framework. A 
 
 #### Frontend Stack
 
-The frontend is mainly written in Typescript as a language, React and Nextjs as a frameworks. The styling is done using TailwindCSS and finally for the hosting Vercel is used.
+The frontend is mainly written in Typescript as a language, React, and Nextjs as a framework. The styling is done using TailwindCSS and finally for the hosting Vercel is used.
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
