@@ -19,8 +19,8 @@ def main():
 
         generate_brand_name(user_input)
         generate_brand_slogan(user_input)
-        generate_adcopy(user_input)
         generate_keywords(user_input)
+        generate_adcopy(user_input)
         
     else:
         raise ValueError(f"Input length is too long. Must be under {MAX_INPUT_LENGTH}.")
@@ -36,7 +36,7 @@ def generate_brand_name(user_input: str) -> str:
     prompt = f"Generate unique, original and creative brand name for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-001", prompt=prompt, temperature=0.2, max_tokens=24)
+    response = openai.Completion.create(model="text-davinci-001", prompt=prompt, top_p=1, temperature=0.5, max_tokens=32)
     brand_name = response["choices"][0]["text"].strip()
 
     # Check if the first response is empty string
@@ -65,12 +65,12 @@ def generate_brand_slogan(user_input: str) -> str:
     # Load your API key from an environment variable or secret management service
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
-    prompt = f"Generate unique, original, creative and short brand slogan for an ecommerce website that sells {user_input}: "
+    prompt = f"Generate onlye one unique, original, creative and short brand slogan for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0.2, max_tokens=32)
+    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=1, top_p=0.5, max_tokens=64)
     brand_slogan = response["choices"][0]["text"].strip()
-
+    
     print(f"Branding Slogan : {brand_slogan}")
     return brand_slogan
 
@@ -83,7 +83,7 @@ def generate_keywords(user_input: str):
     prompt = f"Generate related keywords for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=0.1, max_tokens=32)
+    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=1, top_p=1.0, max_tokens=52)
     
     # strip() to remove "\n\n"
     keywords = response["choices"][0]["text"].strip()
@@ -103,14 +103,14 @@ def generate_adcopy(user_input: str):
     # Load your API key from an environment variable or secret management service
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
-    prompt = f"Write a creative ad for the following product to run on Facebook {user_input}: "
+    prompt = f"Write a creative ad for the following product '{user_input}' to run on Facebook ads"
     print(prompt)
 
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt=f"Write a creative ad for the following product to run on Facebook:\n\nProduct: {user_input}",
+        prompt=prompt,
         temperature=0.5,
-        max_tokens=72,
+        max_tokens=128,
         top_p=1.0,
         frequency_penalty=0.0,
         presence_penalty=0.0
