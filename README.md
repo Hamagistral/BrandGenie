@@ -12,14 +12,20 @@
   <p>AI Branding Assistant SaaS Web App powered by OpenAI</p>
     <a href="https://brandgenie.vercel.app/">Live Preview</a>
     ·
-    <a href="">Demo on YouTube</a>
+    <a href="https://youtu.be/L8uXMnJGJCo">Demo on YouTube</a>
     ·
     <a href="https://github.com/Hamagistral/BrandGenie/issues">Request Feature</a>
 </div>
 
 <hr>
 
+### 🔒 Login Page
+![image](https://user-images.githubusercontent.com/66017329/224343523-32e98f9a-f6bd-4c8f-8fcf-fb2388ac211d.png)
+
+### 🤖 Prompt Page
 ![image](https://user-images.githubusercontent.com/66017329/218896782-c42e2537-7b48-4775-984d-48b9bc0e8001.png)
+
+### 📃 Results Page
 ![image](https://user-images.githubusercontent.com/66017329/218898758-e1d1d655-f5bb-405c-9499-8d775e2e555c.png)
 
 This project is a SaaS Web Application that generates AI branding names, slogans, keywords, and ad copy for e-commerce business owners who need ideas for their upcoming business. It is a full-stack application powered by OpenAI API.
@@ -51,6 +57,6 @@ The frontend is mainly written in Typescript as a language, React, and Nextjs as
 
 ## 📨 Contact Me
 
-![https://www.linkedin.com/in/hamza-elbelghiti/](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)
-![https://github.com/Hamagistral](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-![hamza.lbelghiti@gmail.com](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)
+[LinkedIn](https://www.linkedin.com/in/hamza-elbelghiti/)
+[Github](https://github.com/Hamagistral)
+[Email](hamza.lbelghiti@gmail.com)
