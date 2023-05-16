@@ -16,7 +16,6 @@ def main():
     user_input = args.input
 
     if validate_user_input(user_input):
-
         generate_brand_name(user_input)
         generate_brand_slogan(user_input)
         generate_keywords(user_input)
@@ -33,11 +32,22 @@ def generate_brand_name(user_input: str) -> str:
     # Load your API key from an environment variable or secret management service
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
-    prompt = f"Generate unique, original and creative brand name for an ecommerce website that sells {user_input}: "
+    prompt = f"Generate only one unique, original and creative brand name for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-001", prompt=prompt, top_p=1, temperature=0.5, max_tokens=32)
-    brand_name = response["choices"][0]["text"].strip()
+    response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                        {"role": "system", "content": """You are a helpful AI branding assistant that helps online business owners brand their ecommerce store. 
+                        Return to me only a single or two words for a brand name."""},
+                        {"role": "user", "content": prompt},
+                    ]
+                )
+
+    # response = openai.Completion.create(model="text-davinci-001", prompt=prompt, top_p=1, temperature=0.5, max_tokens=32)
+    
+    brand_name = response["choices"][0]["message"]["content"].strip()
+
 
     # Check if the first response is empty string
     if brand_name != "":
@@ -65,11 +75,20 @@ def generate_brand_slogan(user_input: str) -> str:
     # Load your API key from an environment variable or secret management service
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
-    prompt = f"Generate onlye one unique, original, creative and short brand slogan for an ecommerce website that sells {user_input}: "
+    prompt = f"Generate only one unique, original, creative and short brand slogan for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=1, top_p=0.5, max_tokens=64)
-    brand_slogan = response["choices"][0]["text"].strip()
+    response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                        {"role": "system", "content": """You are a helpful AI branding assistant that helps online business owners brand their ecommerce store. 
+                        Return to me a signle sentence of a brand slogan."""},
+                        {"role": "user", "content": prompt},
+                    ]
+                )
+    
+    # response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=1, top_p=0.5, max_tokens=64)
+    brand_slogan = response["choices"][0]["message"]["content"].strip()
     
     print(f"Branding Slogan : {brand_slogan}")
     return brand_slogan
@@ -83,10 +102,19 @@ def generate_keywords(user_input: str):
     prompt = f"Generate related keywords for an ecommerce website that sells {user_input}: "
     print(prompt)
 
-    response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=1, top_p=1.0, max_tokens=52)
+    response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                        {"role": "system", "content": """You are a helpful AI branding assistant that helps online business owners brand their ecommerce store. 
+                        Return to me 7 keywords related to the ecommerce website."""},
+                        {"role": "user", "content": prompt},
+                    ]
+                )
+
+    # response = openai.Completion.create(model="text-davinci-003", prompt=prompt, temperature=1, top_p=1.0, max_tokens=52)
     
     # strip() to remove "\n\n"
-    keywords = response["choices"][0]["text"].strip()
+    keywords = response["choices"][0]["message"]["content"].strip()
     
     # Split the string and covert it to list
     keywords_array = re.split(",|-|\n", keywords)
@@ -103,20 +131,19 @@ def generate_adcopy(user_input: str):
     # Load your API key from an environment variable or secret management service
     openai.api_key = os.getenv("OPENAI_API_KEY")
 
-    prompt = f"Write a creative ad for the following product '{user_input}' to run on Facebook ads"
+    prompt = f"Write a creative ad copy for the following product '{user_input}' to run on Facebook ads"
     print(prompt)
 
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
-        temperature=0.5,
-        max_tokens=128,
-        top_p=1.0,
-        frequency_penalty=0.0,
-        presence_penalty=0.0
-    )
+    response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                        {"role": "system", "content": """You are a helpful AI branding assistant that helps online business owners brand their ecommerce store. 
+                        Return to me a unique, short of just three sentences and good selling ad copy of one paragraph to run on Facebook Ads."""},
+                        {"role": "user", "content": prompt},
+                    ]
+                )
 
-    brand_adcopy = response["choices"][0]["text"].strip('\n').split(".")[0] + "."
+    brand_adcopy = response["choices"][0]["message"]["content"].strip()
     
     print(brand_adcopy)
     return brand_adcopy

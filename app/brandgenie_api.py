@@ -48,5 +48,5 @@ async def generate_branding(input: str = Query(max_length=MAX_INPUT_LENGTH)):
     adcopy = generate_adcopy(input)
     keywords = generate_keywords(input)
     
-    return {"brand_name": brand_name, "brand_slogan": brand_slogan, "brand_adcopy": adcopy, "keywords": keywords}
+    return {"brand_name": brand_name, "brand_slogan": brand_slogan, "keywords": keywords, "brand_adcopy": adcopy}
 

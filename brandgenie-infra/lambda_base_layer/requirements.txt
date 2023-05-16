@@ -1,5 +1,5 @@
 requests
-fastapi==0.93.0
-mangum==0.17.0
-openai==0.27.1
-python-dotenv==1.0.0
+fastapi
+mangum
+openai
+python-dotenv
