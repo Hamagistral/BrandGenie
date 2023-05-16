@@ -10,11 +10,19 @@
   </div>
   
   <p>AI Branding Assistant SaaS Web App powered by OpenAI</p>
-    <a href="https://brandgenie.vercel.app/">Live Preview</a>
-    ·
-    <a href="https://youtu.be/L8uXMnJGJCo">Demo on YouTube</a>
-    ·
-    <a href="https://github.com/Hamagistral/BrandGenie/issues">Request Feature</a>
+    <a href="https://brandgenie.vercel.app/"><strong>Live Preview</strong></a>
+    🌠
+    <a href="https://youtu.be/L8uXMnJGJCo"><strong>Demo on YouTube</strong></a>
+    🌀
+    <a href="https://github.com/Hamagistral/BrandGenie/issues"><strong>Request Feature</strong></a>   
+</div>
+
+<br>
+
+<div align="center">
+      <img src="https://therealsujitk-vercel-badge.vercel.app/?app=brandgenie&style=plastic"/>
+      <img src="https://img.shields.io/github/repo-size/hamagistral/brandgenie?color=blue&style=plastic"/>
+      <img src="https://img.shields.io/github/stars/hamagistral/brandgenie?color=blue&style=social"/>
 </div>
 
 <hr>
@@ -29,8 +37,6 @@
 ![image](https://user-images.githubusercontent.com/66017329/218898758-e1d1d655-f5bb-405c-9499-8d775e2e555c.png)
 
 This project is a SaaS Web Application that generates AI branding names, slogans, keywords, and ad copy for e-commerce business owners who need ideas for their upcoming business. It is a full-stack application powered by OpenAI API.
-
-<hr>
 
 ## 🛠️ Tech Stack
 
@@ -57,6 +63,6 @@ The frontend is mainly written in Typescript as a language, React, and Nextjs as
 
 ## 📨 Contact Me
 
-[LinkedIn](https://www.linkedin.com/in/hamza-elbelghiti/)
-[Github](https://github.com/Hamagistral)
-[Email](hamza.lbelghiti@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/hamza-elbelghiti/) •
+[Website](https://hamagistral.me) •
+[Gmail](hamza.lbelghiti@gmail.com)
